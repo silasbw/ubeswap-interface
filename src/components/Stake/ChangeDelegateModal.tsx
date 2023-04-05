@@ -1,4 +1,4 @@
-import { useContractKit } from '@celo-tools/use-contractkit'
+import { useContractKit } from '@celo/react-celo'
 import { ButtonError } from 'components/Button'
 import { SearchInput } from 'components/SearchModal/styleds'
 import { useDoTransaction } from 'components/swap/routing'

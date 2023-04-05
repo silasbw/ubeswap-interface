@@ -1,4 +1,4 @@
-import { useContractKit, useProvider } from '@celo-tools/use-contractkit'
+import { useContractKit, useProvider } from '@celo/react-celo'
 import { ExternalProvider, JsonRpcSigner, Web3Provider } from '@ethersproject/providers'
 import { JSBI, TokenAmount } from '@ubeswap/sdk'
 import { StyledControlButton } from 'components/LimitOrderHistory/LimitOrderHistoryItem'

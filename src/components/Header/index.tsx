@@ -1,6 +1,6 @@
 import 'rc-drawer/assets/index.css'
 
-import { ChainId, useContractKit } from '@celo-tools/use-contractkit'
+import { ChainId, useContractKit } from '@celo/react-celo'
 import { CELO, ChainId as UbeswapChainId, TokenAmount } from '@ubeswap/sdk'
 import { CardNoise } from 'components/earn/styled'
 import Modal from 'components/Modal'

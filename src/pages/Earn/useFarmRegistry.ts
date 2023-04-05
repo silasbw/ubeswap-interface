@@ -1,5 +1,5 @@
 import { ApolloQueryResult, gql, useApolloClient, useQuery } from '@apollo/client'
-import { useContractKit } from '@celo-tools/use-contractkit'
+import { useContractKit } from '@celo/react-celo'
 import { BigNumber } from '@ethersproject/bignumber'
 import { formatEther, parseEther } from '@ethersproject/units'
 import { Percent, TokenAmount } from '@ubeswap/sdk'

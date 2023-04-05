@@ -1,4 +1,4 @@
-import { useContractKit } from '@celo-tools/use-contractkit'
+import { useContractKit } from '@celo/react-celo'
 import { ButtonError } from 'components/Button'
 import { AutoColumn } from 'components/Column'
 import { ProposalTabs } from 'components/NavigationTabs'
