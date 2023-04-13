@@ -24,7 +24,7 @@ type VotingInfo = {
 
 export const useVotingTokens = (blockNumber: BigNumber | number): VotingInfo => {
   const { address, network } = useContractKit()
-  const chainId = network.chainId
+  const chainId = network.chainId as UbeswapChainId
   const romulusAddress = chainId ? ubeGovernanceAddresses[chainId] : undefined
   const ube = chainId ? UBE[chainId as unknown as UbeswapChainId] : undefined
   const { tokenAddress, releaseTokenAddress } = useRomulusInfo(romulusAddress)

@@ -325,7 +325,7 @@ export function useMinimaTrade(tokenAmountIn?: TokenAmount, tokenOut?: Token): M
   const [fetchUpdatedData, setFetchUpdatedData] = React.useState<boolean>(true)
   const [fetchTimeout, setFetchTimeout] = React.useState<NodeJS.Timeout | undefined>(undefined)
   const { address: account, network } = useContractKit()
-  const { chainId } = network
+  const chainId = network.chainId as ChainId
   const library = useProvider()
   const provider = getProviderOrSigner(library, account || undefined)
   const tokens = useAllTokens()
@@ -337,7 +337,7 @@ export function useMinimaTrade(tokenAmountIn?: TokenAmount, tokenOut?: Token): M
     }
     const curDeps = {
       chainId,
-      account,
+      account: account || null,
       allowedSlippage,
       singleHopOnly,
       inputAddr: tokenAmountIn.currency.address,
