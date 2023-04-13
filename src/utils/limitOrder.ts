@@ -16,13 +16,20 @@ const Order = [
   { name: 'interaction', type: 'bytes' },
 ]
 
+const EIP712Domain = [
+  { name: 'name', type: 'string' },
+  { name: 'version', type: 'string' },
+  { name: 'chainId', type: 'uint256' },
+  { name: 'verifyingContract', type: 'address' },
+]
+
 const name = 'Limit Order Protocol'
 const version = '2'
 
 export function buildOrderData(chainId: string, verifyingContract: string, order: any) {
   return {
     primaryType: 'Order',
-    types: { Order },
+    types: { EIP712Domain, Order },
     domain: { name, version, chainId, verifyingContract },
     message: order,
   }

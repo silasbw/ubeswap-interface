@@ -1,5 +1,6 @@
-import { useGetConnectedSigner } from '@celo/react-celo'
+import { useContractKit, useGetConnectedSigner } from '@celo/react-celo'
 import { ChainId, TokenAmount } from '@ubeswap/sdk'
+import { joinSignature } from 'ethers/lib/utils'
 import { LimitOrderProtocol__factory } from 'generated/factories/LimitOrderProtocol__factory'
 import { OrderBook__factory } from 'generated/factories/OrderBook__factory'
 import { useCallback, useState } from 'react'
@@ -22,6 +23,7 @@ function cutLastArg(data: string, padding = 0) {
  * @returns
  */
 export const useQueueLimitOrderTrade = () => {
+  const { kit } = useContractKit()
   const getConnectedSigner = useGetConnectedSigner()
   const doTransaction = useDoTransaction()
   const [loading, setLoading] = useState(false)
@@ -70,13 +72,12 @@ export const useQueueLimitOrderTrade = () => {
       try {
         setLoading(true)
         const limitOrderTypedData = buildOrderData(chainId.toString(), limitOrderAddr, limitOrder)
-        const limitOrderSignature = await signer._signTypedData(
-          limitOrderTypedData.domain,
-          limitOrderTypedData.types,
-          limitOrder
+        const limitOrderSignature = await kit.connection.signTypedData(
+          kit.connection.defaultAccount,
+          limitOrderTypedData
         )
         await doTransaction(orderBook, 'broadcastOrder', {
-          args: [limitOrder, limitOrderSignature, rewardDistributorAddr],
+          args: [limitOrder, joinSignature(limitOrderSignature), rewardDistributorAddr],
           summary: `Place limit order for ${outputAmount.toSignificant(2)} ${outputAmount.currency.symbol}`,
         })
       } catch (e) {
